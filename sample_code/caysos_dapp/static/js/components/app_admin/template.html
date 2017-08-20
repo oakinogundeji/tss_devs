@@ -1,0 +1,101 @@
+<!--from /components/app_admin/template.html -->
+<section>
+  <section>
+    <div class="row">
+      <h3>Dapp Connection Info:</h3>
+      <div class="col-md-4" v-show="showNodeConnected">
+        <p class="text-success">Web3 lib is <strong>Connected</strong> to the Ethereum Network with ID: <strong>{{ethereumNWInfo}}</strong></p>
+      </div>
+      <div class="col-md-4" v-show="showWeb3NodeInfo">
+        <p class="text-info">Ethereum node is <strong>{{web3NodeInfo}}</strong></p>
+      </div>
+      <div class="col-md-4" v-show="showCoinbase">
+        <p class="text-primary">The Cayso coinbase is <strong>{{caysoTestnetCoinbase}}</strong></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="well col-md-12">
+        <div class="col-md-4" v-if="!existingContract">
+          <button class="btn btn-primary btn-default" @click.stop.prevent="initiateDeployContract">Deploy new Cayso contract</button>
+        </div>
+        <div class="col-md-4" v-else>
+          <button class="btn btn-info btn-default" @click.stop.prevent>A Cayso contract has been deployed!</button>
+        </div>
+        <div class="col-md-4" v-show="!showCaysoAcctUnlocked">
+          <button class="btn btn-warning btn-default" @click.stop.prevent="showPWDInput">Unlock Cayso account to deploy Contract</button>
+          <form v-show="getAcctPWD">
+            <div>
+              <span class="errMsg" id="pwd-err" v-show="showPWDErr">
+                Invalid password, please try again!
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="acctPwd">Account Password: </label>
+              <input type="password" class="form-control" id="accountPWD" placeholder="password" v-model.trim="acctPWD" required>
+            </div>
+            <button type="submit" class="btn btn-primary" @click.stop.prevent="submitPWD">Go...</button>
+          </form>
+        </div>
+        <div class="col-md-4" v-show="showCaysoAcctUnlocked">
+          <button class="btn btn-warning btn-default" @click.stop.prevent>Cayso account Unlocked</button>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-danger btn-default" @click.stop.prvent="killExistingContract">Kill existing Cayso contract</button>
+        </div>
+      </div>
+      <div v-show="deployingContract" class="spinner">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+      </div>
+      <div>
+        <span class="errMsg" id="deploy-contract-err" v-show="showDeployContractErrMsg">{{deployContractErrMsg}}</span>
+      </div>
+      <div class="well col-md-12">
+        <div class="col-md-4">
+          <button class="btn btn-primary btn-default" @click.stop.prevent="getGlobalCaysosBalance">Get global Caysos balance in ethers</button> <span id="cayso-balance"><strong>{{caysoNWBalance}}</strong></span>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-primary btn-default" @click.stop.prevent="getTotalUsers">Get total users</button> <span id="total-users"><strong>{{caysoNWMembersSum}}</strong></span>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-primary btn-default" @click.stop.prevent="viewFunds">View available funds in Ethers</button> <span id="coinbase-balance"><strong>{{minerBalance}} {{coinbaseBalance}}</strong></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--deploy new contract modal-->
+  <section>
+    <span data-toggle="modal" data-target="#deployContractModal" id="deployContractModalBtn"></span>
+    <div class="modal fade" id="deployContractModal" tabindex="-1" role="dialog" aria-labelledby="deployContractModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" id="closeDeployContractModal" data-dismiss="modal" aria-label="Close"
+            @click.prevent><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title" id="deployContractModalLabel">Deploy new Cayso Contract</h3>
+            <div v-show="spinner" class="spinner">
+              <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+          </div>
+          <div class="modal-body">
+            <h4>Cayso Contract parameters</h4>
+            <form>
+              <div class="form-group">
+                <label for="initial-supply">Initial Supply in Ethers: </label>
+                <input type="text" class="form-control" id="initialSupply" placeholder="10000" v-model.trim="initialSupplyInput" required>
+              </div>
+              <div class="form-group">
+                <label for="restrictionPeriod">User access restriction period in seconds:</label>
+                <input type="text" class="form-control" id="restrictionPeriod" placeholder="60" v-model.trim="restrictionPeriodInput" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+          <button class="btn btn-success btn-default pull-right" @click.stop.prevent="confirmContractParams">
+            Deploy!
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

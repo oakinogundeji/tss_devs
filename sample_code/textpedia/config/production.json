@@ -1,0 +1,4 @@
+{
+  "host": "https://textpedia.herokuapp.com/",
+  "env": "production"
+}

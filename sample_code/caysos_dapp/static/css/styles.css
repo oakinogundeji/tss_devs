@@ -1,0 +1,17 @@
+footer p {
+   position:absolute;
+   bottom:0;
+   width:90%;
+   height:60px;   /* Height of the footer */
+}
+
+.errMsg {
+  font-family: monospace;
+  color: red;
+  font-weight: bold;
+}
+
+.spinner {
+	margin: 20px 0;
+  text-align: center;
+}

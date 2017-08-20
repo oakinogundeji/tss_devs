@@ -1,0 +1,12 @@
+<section id="app-feeds">
+  <div id="user-feed">
+    <p>Most recent activity: {{{userActivity[0]}}}</p>
+    <a href="" class="btn btn-primary btn-default"
+    @click.stop.prevent="getActivity">View other activity</a>
+  </div>
+  <div id="trending-feed">
+    <p>Now Trending: {{{appTrends[0]}}}</p>
+    <a href="" class="btn btn-primary btn-default"
+    @click.stop.prevent="getTrends">View other trends</a>
+  </div>
+</section>

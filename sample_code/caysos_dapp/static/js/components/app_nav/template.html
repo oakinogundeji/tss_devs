@@ -1,0 +1,178 @@
+<!--from /components/app_nav/template.html -->
+<section>
+  <nav class="navbar">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <router-link :to="{name: 'home'}" class="navbar-brand" id="app-label">Percayso</router-link>
+    </div>
+    <!-- Collection of nav links and other content for toggling -->
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+          <li>
+              <router-link :to="{name: 'home'}"><i class="fa fa-home"></i> Home</router-link>
+          </li>
+          <li>
+              <a href="#" data-toggle="modal" data-target="#logInModal"><i class="fa fa-unlock"></i> Login</a>
+          </li>
+          <li>
+              <a href="#" data-toggle="modal" data-target="#signUpModal"><i class="fa fa-sign-in"></i> Sign Up</a
+          </li>
+          <li>
+            <a href="#" data-toggle="modal" data-target="#adminLoginModal">
+              <i class="fa fa-wrench"></i> Admin
+            </a>
+          </li>
+      </ul>
+    </div>
+  </nav>
+<!--admin login modal-->
+  <section>
+    <div class="modal fade" id="adminLoginModal" tabindex="-1" role="dialog" aria-labelledby="adminLoginModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" id="closeAdminLoginModal" data-dismiss="modal" aria-label="Close"
+            @click.prevent><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="adminLoginModalLabel">Cayso Admin Login</h4>
+            <div v-show="spinner" class="spinner">
+              <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            </div>
+            <div>
+              <span class="errMsg" id="login-err" v-show="showLoginErr">
+                Invalid credentials, please try again!
+              </span>
+            </div>
+          </div>
+          <div class="modal-body">
+            <h1><i class="fa fa-unlock"></i> Login!</h1>
+            <form>
+              <div class="form-group">
+                <label for="user-name">Username: </label>
+                <input type="text" class="form-control" id="username" placeholder="Username" v-model.trim="username" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" v-model.trim="password" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+          <button class="btn btn-success btn-default pull-right" @click.stop.prevent="submitAdminCreds">
+            Login
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--signup modal-->
+    <section>
+      <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" id="closeSignUpModal" data-dismiss="modal" aria-label="Close"
+              @click.prevent><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="signUpModalLabel">New User Signup</h4>
+              <div v-show="signUpSpinner" class="spinner">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+              </div>
+              <div>
+                <span class="errMsg" id="signup-err" v-show="showSignUpErr">
+                  {{signUpErrMsg}}
+                </span>
+              </div>
+            </div>
+            <div class="modal-body">
+              <h1><i class="fa fa-sign-in"></i> Signup!</h1>
+              <form>
+                <div class="form-group">
+                  <label for="user-name">Email: </label>
+                  <input type="email" class="form-control" id="email" placeholder="john@doe.com" v-model.trim="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password: </label>
+                  <input type="password" class="form-control" id="password" placeholder="Password" v-model.trim="password" required>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+            <button class="btn btn-success btn-default pull-right" @click.stop.prevent="submitSignUp">
+              Signup
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--login modal-->
+    <section>
+      <div class="modal fade" id="logInModal" tabindex="-1" role="dialog" aria-labelledby="logInModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" id="closeLogInModal" data-dismiss="modal" aria-label="Close"
+              @click.prevent><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="logInModal">Login</h4>
+              <div v-show="logInSpinner" class="spinner">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+              </div>
+              <div>
+                <span class="errMsg" id="login-err" v-show="showLogInErr">
+                  {{logInErrMsg}}
+                </span>
+              </div>
+            </div>
+            <div class="modal-body">
+              <h1><i class="fa fa-sign-in"></i> Login!</h1>
+              <form>
+                <div class="form-group">
+                  <label for="user-name">Email: </label>
+                  <input type="email" class="form-control" id="email" placeholder="john@doe.com" v-model.trim="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password: </label>
+                  <input type="password" class="form-control" id="password" placeholder="Password" v-model.trim="password" required>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+            <button class="btn btn-success btn-default pull-right" @click.stop.prevent="submitLogIn">
+              LogIn
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--no contract modal-->
+    <span data-toggle="modal" data-target="#noContractModal" id="noContractModalBtn"></span>
+    <section>
+      <div class="modal fade" id="noContractModal" tabindex="-1" role="dialog" aria-labelledby="noContractModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" id="closeNoContractModal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="noContractModal">Cayso Network not found</h4>
+            </div>
+            <div class="modal-body">
+              <h1><i class="fa fa-exclamation-triangle"></i> Error</h1>
+              <h3>A Cayso Network does not exist, please contact the Cayso Admin... Thank you!</h3>
+            </div>
+            <div class="modal-footer">
+            <button class="btn btn-primary btn-default pull-right" data-dismiss="modal">
+              Got it
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>

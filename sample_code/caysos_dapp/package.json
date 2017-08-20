@@ -1,0 +1,56 @@
+{
+  "name": "caysos_dapp",
+  "version": "1.0.0",
+  "description": "dapp for the Cayso Smart Contract",
+  "main": "app.js",
+  "browser": {
+    "vue": "vue/dist/vue.common"
+  },
+  "scripts": {
+    "test": "mocha test",
+    "start-dev": "nodemon app.js",
+    "start": "NODE_ENV=production node app.js",
+    "build-dev": "watchify -t partialify ./static/js/app.js -o ./static/js/main.js -dv",
+    "build": "browserify -t partialify ./static/js/app.js -o ./static/js/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/percayso/caysos_dapp.git"
+  },
+  "author": "Percayso Dev Team",
+  "license": "",
+  "homepage": "https://bitbucket.org/percayso/caysos_dapp#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "browserify": "^14.1.0",
+    "connect-mongo": "^1.3.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.0",
+    "express-session": "^1.15.5",
+    "jquery": "^3.2.1",
+    "mongoose": "^4.11.6",
+    "nodemailer": "^4.0.1",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4",
+    "solc": "^0.4.14",
+    "vue": "^2.2.1",
+    "vue-resource": "^1.2.1",
+    "vue-router": "^2.3.0",
+    "web3": "^0.20.0",
+    "ws": "^2.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "clarify": "^2.0.0",
+    "mocha": "^3.2.0",
+    "morgan": "^1.8.1",
+    "partialify": "^3.1.6",
+    "supertest": "^3.0.0",
+    "watchify": "^3.9.0"
+  }
+}

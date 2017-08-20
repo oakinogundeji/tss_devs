@@ -1,0 +1,5 @@
+{
+  "host": "localhost",
+  "env": "development",
+  "dBURL": "mongodb://localhost/textpedia"
+}
