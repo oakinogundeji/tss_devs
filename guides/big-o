@@ -1,0 +1,12 @@
+The essential purpose of understanding Big O notation (https://en.wikipedia.org/wiki/Big_O_notation)
+is to provide a universal language for analyzing the performance of any algo.
+
+For us, this means that as much as possible we want to avoid nested loops, where
+possible use objects and their constant time performance to retrieve info.
+
+If searching is required, then use data structures that support fast sorting so
+that the combined operation does not exceed O(nlogn).
+
+Leverage built in language features to implement sorting and searching before coding
+your own or using a 3rd party. Where necessary, compute intensive ops should be
+offloaded to a child process and executed by a more performant language e.g. C, C++ or Go.

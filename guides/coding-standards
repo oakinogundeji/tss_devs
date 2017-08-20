@@ -1,0 +1,68 @@
+PURPOSE:
+
+To provide a resource for shared understanding on the desired coding standards for
+TSS devs on the projects to be executed
+
+LANGUAGE:
+
+Javascript ES5+. This means that the absolute minimum acceptable language features
+MUST come from JS ES5. ES5 is the ‘trunk of the tree’ to which useful features
+from ES6,7 and 8 can be added as desired.
+
+SPACES vs TABS:
+
+Set your IDE/Text Editor to use 2 spaces for tabs, this allows indentation to be
+consistent across the codebase.
+
+STYLE GUIDE:
+
+Since JS allows us to be very expressive it's easy to become confused on best practices.
+I highly recommend the airbnb style guide (https://github.com/airbnb/javascript).
+Above all it's fundamental that we use descriptive names for variables
+(whether they’re constants, mutables or functions).
+
+COMMENTS:
+
+If the flow of the code is non intuitive, ensure that you begin the function or
+module with a description of the expected behaviour.
+
+QUOTES:
+
+Be consistent - single or double quotes may be used as desired but consistency is key.
+
+MODULE ORGANIZATION;
+
+The following organization for a module (assuming use of express as the web app framework) is recommended:
+
+Pragma statement declaration
+Dependencies declaration
+Module variables declaration
+Module configuration declaration
+Middleware pipeline
+Helper functions
+Module functionality
+Module export
+
+MODULE EXPORTS:
+
+The 2 main artifacts we export are objects and functions. We export objects when
+the module is completely self contained and functions when external dependencies MUST be injected.
+
+PROJECT DEVELOPMENT WORKFLOW:
+
+The recommended workflow is based on several philosophies: -
+7Ps - Proper Previous Planning Prevents Pitifully Poor Performance: Thus we document
+and plan our project archi before coding
+make it work, make it right, make it fast.
+DOTW: Do One Thing Well
+KISS: Keep the code as simple as possible
+YAGNI: Avoid preemptive abstractions - if the dbase target is mongodb, code with
+expectation of using mongodb and do not complicate the codebase by abstracting
+the dbase driver application
+
+PROJECT DEVELOPMENT CHECKLIST:
+
+Use this list
+(https://docs.google.com/document/d/1oWAsBOwHgFsatdHesUdY5TD1kdD25C4cTggnIuOPgaM/edit?usp=sharing)
+to ensure your project is following the standards and processes determined by the
+Lead developers on both sides of the world.

@@ -1,0 +1,33 @@
+Asynchrony is a fundamental pillar of Javascript.
+
+At present there are 5 major tools available to the JS dev to implement asynchrony in their codebase:
+
+CPS: This is the error first callback pattern we're used to. It's a fundamental node.js idiom.
+The most appropriate way to use it as a callback to handle a single async event.
+The callback can be predefined and named e.g. providing ‘app’ as the connection
+handler to the node ‘http’ server object, or as an inline anonymous function.
+Either way, the error must be handled before the expected data.
+Understanding of CPS is the fundamental skill when it comes to asynchrony in JS
+because CPS forms the foundation for all other methods.
+
+Promises:Promises build on CPS by inverting the control flow, rather than the
+caller passing the callback to the async code, the async code gives the caller
+a placeholder for expected return value. This placeholder - the ‘Promise’ still
+requires a CPS type callback to handle the expected value within the calling code.
+
+Event Emitters: Event emitters are an implementation of the observer pattern.
+By emitting events which can be listened for and handled, modules can be very
+loosely coupled. Nevertheless, CPS style callbacks MUST still be implemented to
+handle the emitted event and any data passed along with that event.
+
+Control flow libraries: Control flow libraries allow us to coordinate the sequencing
+of multiple async steps using CPS callbacks. One of the most popular libraries is
+async.js (https://caolan.github.io/async/).
+
+async/await (node.js 7.6+): Async/Await is a native JS pattern supported from node.js v7.6+.
+The fundamental construct used is promises and by extension CPS.
+Async/Await allows us to more cleanly structure promised based async code such
+that it reads in a top-to-down synchronous fashion.
+
+Its vitally important that we are familiar with these options to allow us to
+implement the most suitable method within our codebase.
